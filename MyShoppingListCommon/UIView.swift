@@ -28,18 +28,25 @@ class UIView: NSView {
 	func setNeedsDisplay() {
 		setNeedsDisplay(self.bounds)
 	}
-
+	
 	override func mouseDown(with event: NSEvent) {
-		touchesBegan(Set<UITouch>(), with: event)
+		touchesBegan(Set<UITouch>([UITouch(event: event, window: self.window!, view:self)]), with: event)
 	}
 
 	override func mouseUp(with event: NSEvent) {
-		touchesEnded(Set<UITouch>(), with: event)
+		touchesEnded(Set<UITouch>([UITouch(event: event, window: self.window!, view:self)]), with: event)
+	}
+	
+	override func mouseDragged(with event: NSEvent) {
+		touchesMoved(Set<UITouch>([UITouch(event: event, window: self.window!, view:self)]), with: event)
 	}
 	
 	func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 	}
 
+	func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+	}
+	
 	func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 	}
 }
@@ -49,6 +56,23 @@ func UIGraphicsGetCurrentContext() -> CGContext? {
 	return NSGraphicsContext.current?.cgContext
 }
 
-typealias UITouch = NSObject
+class UITouch: NSObject
+{
+	let event: NSEvent
+	let window: NSWindow
+	let view: NSView
+	
+	init( event inEvent: NSEvent, window inWindow: NSWindow, view inView: NSView ) {
+		event = inEvent;
+		window = inWindow;
+		view = inView;
+		
+		super.init()
+	}
+	
+	func location(in view: NSView) -> NSPoint {
+		return view.convert(event.locationInWindow, from: nil)
+	}
+}
 
 typealias UIEvent = NSEvent

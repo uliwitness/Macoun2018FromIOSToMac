@@ -27,7 +27,20 @@ class CustomView: UIView
 		self.currColor = UIColor.darkGray
 		setNeedsDisplay()
 	}
-
+	
+	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		if let currTouch = touches.first {
+			let pos = currTouch.location(in: self)
+			
+			if self.bounds.contains(pos) {
+				self.currColor = UIColor.darkGray
+			} else {
+				self.currColor = UIColor.red
+			}
+			setNeedsDisplay()
+		}
+	}
+	
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		self.currColor = UIColor.red
 		setNeedsDisplay()
