@@ -8,11 +8,11 @@
 
 import Cocoa
 
-class Document: NSDocument, NSTableViewDelegate, NSTableViewDataSource {
+class Document: NSDocument, NSBrowserDelegate {
 
 	var common: DocumentCommon = DocumentCommon()
 	@IBOutlet weak var documentNameField: NSTextField!
-	@IBOutlet weak var tableView: NSTableView!
+	@IBOutlet weak var tableView: NSBrowser!
 
 	override var windowNibName: NSNib.Name? {
 		return NSNib.Name("Document")
@@ -21,7 +21,7 @@ class Document: NSDocument, NSTableViewDelegate, NSTableViewDataSource {
 	override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
 		super.windowControllerDidLoadNib(windowController)
 		
-		self.tableView.reloadData()
+		self.tableView.loadColumnZero()
 		
 		updateUI()
 	}
@@ -43,16 +43,36 @@ class Document: NSDocument, NSTableViewDelegate, NSTableViewDataSource {
 		}
 	}
 	
-	func numberOfRows(in tableView: NSTableView) -> Int {
-		return common.items.count
+	public func browser(_ browser: NSBrowser, numberOfChildrenOfItem item: Any?) -> Int
+	{
+		if item == nil {
+			return self.common.items.count
+		}
+		
+		guard let item = item as? ToDoRow else { return 0 }
+		
+		return item.children.count;
 	}
 	
-	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		let tableCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue:"SimpleCell"), owner: self)
-		if let tableCell = tableCell as? NSTableCellView {
-			tableCell.textField?.stringValue = common.items[row]
+	public func browser(_ browser: NSBrowser, child index: Int, ofItem item: Any?) -> Any {
+		if item == nil {
+			return self.common.items[index]
 		}
-		return tableCell
+		
+		guard let item = item as? ToDoRow else { return "" }
+		
+		return item.children[index];
+	}
+	
+	
+	public func browser(_ browser: NSBrowser, isLeafItem item: Any?) -> Bool {
+		return false
+	}
+	
+	public func browser(_ browser: NSBrowser, objectValueForItem item: Any?) -> Any? {
+		guard let item = item as? ToDoRow else { return nil }
+
+		return item.text
 	}
 }
 

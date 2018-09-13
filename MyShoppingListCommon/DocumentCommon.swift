@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ToDoRow {
+@objc class ToDoRow: NSObject {
 	var text: String
 	var children: [ToDoRow]
 	
