@@ -37,7 +37,15 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         // Set the URL for the new document here. Optionally, you can present a template chooser before calling the importHandler.
         // Make sure the importHandler is always called, even if the user cancels the creation request.
         if let newDocumentURL = newDocumentURL {
-			FileManager.default.createFile(atPath: newDocumentURL.path, contents: "Hi".data(using: .utf8), attributes: nil)
+			do {
+				let doc = DocumentCommon()
+				let docData = try doc.contents(forType: "Text") as? Data ?? Data()
+				
+				FileManager.default.createFile(atPath: newDocumentURL.path, contents: docData, attributes: nil)
+			}
+			catch let error {
+				print(error.localizedDescription)
+			}
 			
             importHandler(newDocumentURL, .move)
         } else {

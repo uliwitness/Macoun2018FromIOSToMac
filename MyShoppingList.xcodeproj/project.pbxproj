@@ -21,6 +21,10 @@
 		55414BA72149F7460056DD03 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55414BA52149F7460056DD03 /* MainMenu.xib */; };
 		55414BAF2149F7770056DD03 /* DocumentCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55414BAE2149F7770056DD03 /* DocumentCommon.swift */; };
 		55414BB02149F7770056DD03 /* DocumentCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55414BAE2149F7770056DD03 /* DocumentCommon.swift */; };
+		55414BB3214A02C00056DD03 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55414BB1214A02C00056DD03 /* UIView.swift */; };
+		55414BB5214A03D40056DD03 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55414BB4214A03D40056DD03 /* CustomView.swift */; };
+		55414BB6214A03D40056DD03 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55414BB4214A03D40056DD03 /* CustomView.swift */; };
+		55414BB8214ACE840056DD03 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55414BB7214ACE840056DD03 /* ListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,9 @@
 		55414BA82149F7460056DD03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55414BA92149F7460056DD03 /* MyShoppingListMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyShoppingListMac.entitlements; sourceTree = "<group>"; };
 		55414BAE2149F7770056DD03 /* DocumentCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCommon.swift; sourceTree = "<group>"; };
+		55414BB1214A02C00056DD03 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = MyShoppingListCommon/UIView.swift; sourceTree = SOURCE_ROOT; };
+		55414BB4214A03D40056DD03 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		55414BB7214ACE840056DD03 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +94,7 @@
 				55414B802149F6CF0056DD03 /* AppDelegate.swift */,
 				55414B822149F6CF0056DD03 /* DocumentBrowserViewController.swift */,
 				55414B842149F6CF0056DD03 /* DocumentViewController.swift */,
+				55414BB7214ACE840056DD03 /* ListViewController.swift */,
 				55414B862149F6CF0056DD03 /* Document.swift */,
 				55414B882149F6CF0056DD03 /* Main.storyboard */,
 				55414B8B2149F6D10056DD03 /* Assets.xcassets */,
@@ -101,6 +109,7 @@
 			children = (
 				55414B9C2149F7450056DD03 /* AppDelegate.swift */,
 				55414B9E2149F7450056DD03 /* Document.swift */,
+				55414BB1214A02C00056DD03 /* UIView.swift */,
 				55414BA02149F7450056DD03 /* Document.xib */,
 				55414BA32149F7460056DD03 /* Assets.xcassets */,
 				55414BA52149F7460056DD03 /* MainMenu.xib */,
@@ -114,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				55414BAE2149F7770056DD03 /* DocumentCommon.swift */,
+				55414BB4214A03D40056DD03 /* CustomView.swift */,
 			);
 			path = MyShoppingListCommon;
 			sourceTree = "<group>";
@@ -228,8 +238,10 @@
 				55414B872149F6CF0056DD03 /* Document.swift in Sources */,
 				55414B852149F6CF0056DD03 /* DocumentViewController.swift in Sources */,
 				55414B832149F6CF0056DD03 /* DocumentBrowserViewController.swift in Sources */,
+				55414BB5214A03D40056DD03 /* CustomView.swift in Sources */,
 				55414BAF2149F7770056DD03 /* DocumentCommon.swift in Sources */,
 				55414B812149F6CF0056DD03 /* AppDelegate.swift in Sources */,
+				55414BB8214ACE840056DD03 /* ListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +249,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55414BB6214A03D40056DD03 /* CustomView.swift in Sources */,
+				55414BB3214A02C00056DD03 /* UIView.swift in Sources */,
 				55414B9F2149F7450056DD03 /* Document.swift in Sources */,
 				55414B9D2149F7450056DD03 /* AppDelegate.swift in Sources */,
 				55414BB02149F7770056DD03 /* DocumentCommon.swift in Sources */,
@@ -410,6 +424,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.MyShoppingList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MYSHOPPINGLIST_IOS";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -428,6 +443,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.MyShoppingList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = MYSHOPPINGLIST_IOS;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -451,6 +467,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.MyShoppingListMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MYSHOPPINGLIST_MAC";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -473,6 +490,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.MyShoppingListMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = MYSHOPPINGLIST_MAC;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
