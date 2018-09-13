@@ -8,11 +8,11 @@
 
 import Cocoa
 
-class Document: NSDocument, NSBrowserDelegate {
+class Document: NSDocument, NSOutlineViewDataSource, NSOutlineViewDelegate {
 
 	var common: DocumentCommon = DocumentCommon()
 	@IBOutlet weak var documentNameField: NSTextField!
-	@IBOutlet weak var tableView: NSBrowser!
+	@IBOutlet weak var tableView: NSOutlineView!
 
 	override var windowNibName: NSNib.Name? {
 		return NSNib.Name("Document")
@@ -21,7 +21,7 @@ class Document: NSDocument, NSBrowserDelegate {
 	override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
 		super.windowControllerDidLoadNib(windowController)
 		
-		self.tableView.loadColumnZero()
+		self.tableView.reloadData()
 		
 		updateUI()
 	}
@@ -43,7 +43,7 @@ class Document: NSDocument, NSBrowserDelegate {
 		}
 	}
 	
-	public func browser(_ browser: NSBrowser, numberOfChildrenOfItem item: Any?) -> Int
+	func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int
 	{
 		if item == nil {
 			return self.common.items.count
@@ -53,8 +53,8 @@ class Document: NSDocument, NSBrowserDelegate {
 		
 		return item.children.count;
 	}
-	
-	public func browser(_ browser: NSBrowser, child index: Int, ofItem item: Any?) -> Any {
+
+	func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
 		if item == nil {
 			return self.common.items[index]
 		}
@@ -63,16 +63,19 @@ class Document: NSDocument, NSBrowserDelegate {
 		
 		return item.children[index];
 	}
-	
-	
-	public func browser(_ browser: NSBrowser, isLeafItem item: Any?) -> Bool {
-		return false
+
+	func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
+		return true
 	}
 	
-	public func browser(_ browser: NSBrowser, objectValueForItem item: Any?) -> Any? {
+	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
 		guard let item = item as? ToDoRow else { return nil }
 
-		return item.text
+		let tableCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue:"SimpleCell"), owner: self)
+		if let tableCell = tableCell as? NSTableCellView {
+			tableCell.textField?.stringValue = item.text
+		}
+		return tableCell
 	}
 }
 
