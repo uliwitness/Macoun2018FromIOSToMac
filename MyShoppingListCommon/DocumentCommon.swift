@@ -18,9 +18,12 @@ import Foundation
 	}
 }
 
+
 class DocumentCommon
 {
 	var text = "This is a new document. Write in it."
+	
+	var changeHandler: (()->Void)? = nil
 	
 	var items: [ToDoRow] = [
 		ToDoRow("Babylon 5", children:
@@ -51,7 +54,7 @@ class DocumentCommon
 				ToDoRow("Worf"),
 				ToDoRow("K'Ehleyr"),
 				ToDoRow("Thomas Riker"),
-				ToDoRow("Eri Dax"),
+				ToDoRow("Ezri Dax"),
 			]
 		),
 	]
@@ -63,6 +66,31 @@ class DocumentCommon
 	func load(fromContents contents: Any, ofType typeName: String?) throws {
 		if let contents = contents as? Data {
 			self.text = String(data: contents, encoding: .utf8) ?? ""
+		}
+		
+		if let changeHandler = changeHandler {
+			changeHandler()
+		}
+	}
+	
+	func delete(item targetItem: ToDoRow) {
+		for x in 0 ..< items.count {
+			let currItem = items[x]
+			if (currItem == targetItem) {
+				items.remove(at: x)
+				break;
+			}
+			for y in 0 ..< currItem.children.count {
+				let currSubItem = currItem.children[y]
+				if (currSubItem == targetItem) {
+					currItem.children.remove(at: y)
+					break;
+				}
+			}
+		}
+
+		if let changeHandler = changeHandler {
+			changeHandler()
 		}
 	}
 }

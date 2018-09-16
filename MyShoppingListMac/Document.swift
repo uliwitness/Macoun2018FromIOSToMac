@@ -21,7 +21,9 @@ class Document: NSDocument, NSOutlineViewDataSource, NSOutlineViewDelegate {
 	override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
 		super.windowControllerDidLoadNib(windowController)
 		
-		self.tableView.reloadData()
+		common.changeHandler = {() -> Void in
+			self.tableView.reloadData()
+		}
 		
 		updateUI()
 	}
@@ -65,7 +67,9 @@ class Document: NSDocument, NSOutlineViewDataSource, NSOutlineViewDelegate {
 	}
 
 	func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-		return true
+		guard let item = item as? ToDoRow else { return false }
+		
+		return item.children.count > 0;
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
@@ -76,6 +80,24 @@ class Document: NSDocument, NSOutlineViewDataSource, NSOutlineViewDelegate {
 			tableCell.textField?.stringValue = item.text
 		}
 		return tableCell
+	}
+	
+	override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+		if menuItem.action == #selector(delete(_:)) {
+			return self.tableView.selectedRow != -1
+		} else {
+			return true
+		}
+	}
+	
+	@IBAction func delete(_ sender: Any) {
+		let selRowIndex = self.tableView.selectedRow
+		
+		guard selRowIndex >= 0 else { return }
+		
+		if let selectedItem = self.tableView.item(atRow: selRowIndex) as? ToDoRow {
+			common.delete(item: selectedItem)
+		}
 	}
 }
 

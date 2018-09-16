@@ -59,7 +59,7 @@ class DocumentViewController: UIViewController, UITableViewDataSource, UITableVi
 	}
 	
 	@IBAction func showNavView(_ sender: Any) {
-		let navView = UINavigationController(rootViewController: ListViewController(items: document!.common.items))
+		let navView = UINavigationController(rootViewController: ListViewController(items: document!.common.items, common: document!.common, isRoot: true))
 		self.present(navView, animated: true) {
 			
 		}
