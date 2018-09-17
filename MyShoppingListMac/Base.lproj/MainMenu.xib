@@ -690,16 +690,16 @@
             </items>
         </menu>
         <window title="Palette" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="oIe-9b-dit" userLabel="Palette" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" fullSizeContentView="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="90" y="125" width="231" height="83"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="IKs-Sl-RXg">
-                <rect key="frame" x="0.0" y="0.0" width="231" height="83"/>
+                <rect key="frame" x="0.0" y="0.0" width="231" height="88"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UfA-O2-OIA">
-                        <rect key="frame" x="18" y="44" width="44" height="17"/>
+                        <rect key="frame" x="18" y="49" width="44" height="17"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Name:" id="pKq-S6-ptm">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -707,7 +707,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eOK-Gk-DVM">
-                        <rect key="frame" x="68" y="41" width="96" height="22"/>
+                        <rect key="frame" x="68" y="46" width="96" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="96" id="vlE-3y-7Oh"/>
                         </constraints>
@@ -721,7 +721,7 @@
                         </connections>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="icH-Ex-i59">
-                        <rect key="frame" x="68" y="14" width="64" height="19"/>
+                        <rect key="frame" x="68" y="19" width="64" height="19"/>
                         <buttonCell key="cell" type="recessed" title="Popover" bezelStyle="recessed" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YdB-n2-ofR">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                             <font key="font" metaFont="systemBold" size="12"/>
@@ -733,8 +733,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="eOK-Gk-DVM" firstAttribute="top" secondItem="IKs-Sl-RXg" secondAttribute="top" constant="20" id="2Ex-MK-oKC"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="icH-Ex-i59" secondAttribute="trailing" constant="20" id="61c-Ao-5ba"/>
                     <constraint firstItem="icH-Ex-i59" firstAttribute="top" secondItem="eOK-Gk-DVM" secondAttribute="bottom" constant="8" id="6J7-tJ-WJ6"/>
                     <constraint firstItem="icH-Ex-i59" firstAttribute="leading" secondItem="eOK-Gk-DVM" secondAttribute="leading" id="9aP-he-f7g"/>
+                    <constraint firstAttribute="bottom" secondItem="icH-Ex-i59" secondAttribute="bottom" constant="20" id="L8a-P6-Ha6"/>
                     <constraint firstItem="eOK-Gk-DVM" firstAttribute="firstBaseline" secondItem="UfA-O2-OIA" secondAttribute="firstBaseline" id="VOe-Kf-Lcn"/>
                     <constraint firstItem="UfA-O2-OIA" firstAttribute="leading" secondItem="IKs-Sl-RXg" secondAttribute="leading" constant="20" id="Xz2-GR-zNb"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eOK-Gk-DVM" secondAttribute="trailing" constant="20" id="Ztg-yb-AcD"/>
