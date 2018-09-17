@@ -25,6 +25,9 @@
 		55414BB5214A03D40056DD03 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55414BB4214A03D40056DD03 /* CustomView.swift */; };
 		55414BB6214A03D40056DD03 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55414BB4214A03D40056DD03 /* CustomView.swift */; };
 		55414BB8214ACE840056DD03 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55414BB7214ACE840056DD03 /* ListViewController.swift */; };
+		5578E09D214E6B820007248C /* InspectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5578E09C214E6B820007248C /* InspectorController.swift */; };
+		558BD535214FFCCB00E83495 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558BD533214FFCCB00E83495 /* PopoverViewController.swift */; };
+		558BD536214FFCCB00E83495 /* PopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 558BD534214FFCCB00E83495 /* PopoverViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +52,9 @@
 		55414BB1214A02C00056DD03 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = MyShoppingListCommon/UIView.swift; sourceTree = SOURCE_ROOT; };
 		55414BB4214A03D40056DD03 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		55414BB7214ACE840056DD03 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		5578E09C214E6B820007248C /* InspectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorController.swift; sourceTree = "<group>"; };
+		558BD533214FFCCB00E83495 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
+		558BD534214FFCCB00E83495 /* PopoverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopoverViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,11 +114,14 @@
 			isa = PBXGroup;
 			children = (
 				55414B9C2149F7450056DD03 /* AppDelegate.swift */,
-				55414B9E2149F7450056DD03 /* Document.swift */,
-				55414BB1214A02C00056DD03 /* UIView.swift */,
-				55414BA02149F7450056DD03 /* Document.xib */,
-				55414BA32149F7460056DD03 /* Assets.xcassets */,
 				55414BA52149F7460056DD03 /* MainMenu.xib */,
+				5578E09C214E6B820007248C /* InspectorController.swift */,
+				55414B9E2149F7450056DD03 /* Document.swift */,
+				55414BA02149F7450056DD03 /* Document.xib */,
+				558BD533214FFCCB00E83495 /* PopoverViewController.swift */,
+				558BD534214FFCCB00E83495 /* PopoverViewController.xib */,
+				55414BB1214A02C00056DD03 /* UIView.swift */,
+				55414BA32149F7460056DD03 /* Assets.xcassets */,
 				55414BA82149F7460056DD03 /* Info.plist */,
 				55414BA92149F7460056DD03 /* MyShoppingListMac.entitlements */,
 			);
@@ -222,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558BD536214FFCCB00E83495 /* PopoverViewController.xib in Resources */,
 				55414BA42149F7460056DD03 /* Assets.xcassets in Resources */,
 				55414BA22149F7450056DD03 /* Document.xib in Resources */,
 				55414BA72149F7460056DD03 /* MainMenu.xib in Resources */,
@@ -251,9 +261,11 @@
 			files = (
 				55414BB6214A03D40056DD03 /* CustomView.swift in Sources */,
 				55414BB3214A02C00056DD03 /* UIView.swift in Sources */,
+				558BD535214FFCCB00E83495 /* PopoverViewController.swift in Sources */,
 				55414B9F2149F7450056DD03 /* Document.swift in Sources */,
 				55414B9D2149F7450056DD03 /* AppDelegate.swift in Sources */,
 				55414BB02149F7770056DD03 /* DocumentCommon.swift in Sources */,
+				5578E09D214E6B820007248C /* InspectorController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

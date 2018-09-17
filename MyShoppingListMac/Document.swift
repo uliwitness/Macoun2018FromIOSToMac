@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class Document: NSDocument, NSOutlineViewDataSource, NSOutlineViewDelegate {
+class Document: NSDocument, NSOutlineViewDataSource, NSOutlineViewDelegate, InspectorControllerTarget {
 
 	var common: DocumentCommon = DocumentCommon()
 	@IBOutlet weak var documentNameField: NSTextField!
@@ -82,6 +82,10 @@ class Document: NSDocument, NSOutlineViewDataSource, NSOutlineViewDelegate {
 		return tableCell
 	}
 	
+	func outlineViewSelectionDidChange(_ notification: Notification) {
+		InspectorController.shared.updateUI()
+	}
+	
 	override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
 		if menuItem.action == #selector(delete(_:)) {
 			return self.tableView.selectedRow != -1
@@ -97,6 +101,31 @@ class Document: NSDocument, NSOutlineViewDataSource, NSOutlineViewDelegate {
 		
 		if let selectedItem = self.tableView.item(atRow: selRowIndex) as? ToDoRow {
 			common.delete(item: selectedItem)
+		}
+	}
+	
+	var currentNameForInspector: String? {
+		get {
+			let selRowIndex = self.tableView.selectedRow
+			
+			guard selRowIndex >= 0 else { return nil }
+			
+			if let selectedItem = self.tableView.item(atRow: selRowIndex) as? ToDoRow {
+				return selectedItem.text
+			}
+			
+			return nil
+		}
+		set(newValue) {
+			let selRowIndex = self.tableView.selectedRow
+			
+			guard selRowIndex >= 0 else { return }
+			
+			if let selectedItem = self.tableView.item(atRow: selRowIndex) as? ToDoRow,
+				let newValue = newValue {
+				selectedItem.text = newValue
+				self.tableView.reloadItem(selectedItem)
+			}
 		}
 	}
 }

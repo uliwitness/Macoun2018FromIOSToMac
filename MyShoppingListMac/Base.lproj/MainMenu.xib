@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.13.2"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -11,9 +12,15 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="MyShoppingListMac" customModuleProvider="target"/>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <customObject id="OyT-dj-szy" customClass="InspectorController" customModule="MyShoppingListMac" customModuleProvider="target">
+            <connections>
+                <outlet property="inspectorWindow" destination="oIe-9b-dit" id="Ycy-UX-XhC"/>
+                <outlet property="nameField" destination="eOK-Gk-DVM" id="ySG-wf-Ftq"/>
+            </connections>
+        </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="MyShoppingListMac" id="1Xt-HY-uBw">
@@ -682,5 +689,59 @@
                 </menuItem>
             </items>
         </menu>
+        <window title="Palette" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="oIe-9b-dit" userLabel="Palette" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" fullSizeContentView="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="90" y="125" width="231" height="83"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" id="IKs-Sl-RXg">
+                <rect key="frame" x="0.0" y="0.0" width="231" height="83"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UfA-O2-OIA">
+                        <rect key="frame" x="18" y="44" width="44" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Name:" id="pKq-S6-ptm">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eOK-Gk-DVM">
+                        <rect key="frame" x="68" y="41" width="96" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="96" id="vlE-3y-7Oh"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="RNr-y6-wdW">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="OyT-dj-szy" id="Qa8-QN-q5z"/>
+                        </connections>
+                    </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="icH-Ex-i59">
+                        <rect key="frame" x="68" y="14" width="64" height="19"/>
+                        <buttonCell key="cell" type="recessed" title="Popover" bezelStyle="recessed" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YdB-n2-ofR">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="12"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="orderFrontPopover:" target="OyT-dj-szy" id="6Ns-2u-r5i"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="eOK-Gk-DVM" firstAttribute="top" secondItem="IKs-Sl-RXg" secondAttribute="top" constant="20" id="2Ex-MK-oKC"/>
+                    <constraint firstItem="icH-Ex-i59" firstAttribute="top" secondItem="eOK-Gk-DVM" secondAttribute="bottom" constant="8" id="6J7-tJ-WJ6"/>
+                    <constraint firstItem="icH-Ex-i59" firstAttribute="leading" secondItem="eOK-Gk-DVM" secondAttribute="leading" id="9aP-he-f7g"/>
+                    <constraint firstItem="eOK-Gk-DVM" firstAttribute="firstBaseline" secondItem="UfA-O2-OIA" secondAttribute="firstBaseline" id="VOe-Kf-Lcn"/>
+                    <constraint firstItem="UfA-O2-OIA" firstAttribute="leading" secondItem="IKs-Sl-RXg" secondAttribute="leading" constant="20" id="Xz2-GR-zNb"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eOK-Gk-DVM" secondAttribute="trailing" constant="20" id="Ztg-yb-AcD"/>
+                    <constraint firstItem="eOK-Gk-DVM" firstAttribute="leading" secondItem="UfA-O2-OIA" secondAttribute="trailing" constant="8" id="hyz-LB-Ruh"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="-115.5" y="55.5"/>
+        </window>
     </objects>
 </document>
